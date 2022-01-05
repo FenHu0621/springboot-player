@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lening.mapper.PlayerMapper">
+    <select id="selectAll" resultType="com.lening.entity.Player">
+        SELECT p.id,p.`name`,p.age,p.birthday,s.`name` sname,t.`name` tname,t.area,p.url FROM t_player p
+        LEFT JOIN t_school s on p.sid = s.id
+        LEFT JOIN t_team t on p.tid = t.id
+        <where>
+            <if test="name != null and name != ''">
+                p.name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteById">
+        delete from t_player where id = #{id}
+    </delete>
+
+    <select id="selectSchool" resultType="com.lening.entity.Player">
+        SELECT * FROM t_school
+    </select>
+
+    <select id="selectTeam" resultType="com.lening.entity.Player">
+        SELECT * FROM t_team
+    </select>
+
+    <insert id="insertPlayer">
+        INSERT INTO t_player(`name`, `age`, `birthday`, `sid`, `tid`,url) VALUES (#{name},#{age},#{birthday},#{sid},#{tid},#{url})
+    </insert>
+
+    <select id="selectById" resultType="com.lening.entity.Player">
+        SELECT * FROM t_player where id = #{id}
+    </select>
+
+    <update id="updatePlayer">
+        UPDATE t_player
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="age != ''">
+                age = #{age},
+            </if>
+            <if test="birthday != null and birthday != ''">
+                birthday = #{birthday},
+            </if>
+            <if test="sid != null and sid != ''">
+                sid = #{sid},
+            </if>
+            <if test="tid != null and tid != ''">
+                tid = #{tid},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

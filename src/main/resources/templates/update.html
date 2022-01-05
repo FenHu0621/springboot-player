@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../vuejs/vuejs-2.5.16.js"></script>
+    <script type="text/javascript" src="../vuejs/axios-0.18.0.js"></script>
+</head>
+<body>
+    <center>
+        <h2>修改页面-vue</h2>
+        <div id="update">
+            <table border="1" rules="all">
+                <tr>
+                    <td>姓名</td>
+                    <td>
+                        <input type="text" v-model="player.name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>年龄</td>
+                    <td>
+                        <input type="text" v-model="player.age">
+                    </td>
+                </tr>
+                <tr>
+                    <td>生日</td>
+                    <td>
+                        <input type="date" v-model="player.birthday">
+                    </td>
+                </tr>
+                <tr>
+                    <td>毕业院校</td>
+                    <td>
+                        <select v-model="player.sid">
+                            <option v-for="s in school" :value="s.id">{{s.name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>所属球队</td>
+                    <td>
+                        <select v-model="player.tid">
+                            <option v-for="t in team" :value="t.id">{{t.name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>更换头像</td>
+                    <td>
+                        <img :src="imgaddress" style="width: 50px">
+                        <input type="file" name="file">
+                        <button @click="upload()">点击上传</button>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td colspan="100">
+                        <button @click="updatePlayer()">保存</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </center>
+</body>
+<script type="text/javascript" src="../myjs/update.js"></script>
+</html>

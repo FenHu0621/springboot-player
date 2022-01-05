@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../vuejs/vuejs-2.5.16.js"></script>
+    <script type="text/javascript" src="../vuejs/axios-0.18.0.js"></script>
+</head>
+<body>
+    <center>
+        <div id="app">
+            <h2>球员信息展示</h2>
+            <input type="text" v-model="player.name">
+            <button @click="selectAll()">检索</button>
+            <table border="1" rules="all">
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>生日</th>
+                    <th>毕业院校</th>
+                    <th>所属球队</th>
+                    <th>所属国家</th>
+                    <th>头像</th>
+                    <th>
+                        操作
+                        <button @click="add()">添加</button>
+                    </th>
+                </tr>
+                <tr align="center" v-for="p in list">
+                    <td>{{p.id}}</td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.age}}</td>
+                    <td>{{p.birthday}}</td>
+                    <td>{{p.sname}}</td>
+                    <td>{{p.tname}}</td>
+                    <td>{{p.area}}</td>
+                    <td>
+                        <img :src="p.url" style="width: 50px">
+                    </td>
+
+                    <td>
+                        <button @click="update(p.id)">修改</button>
+                        <button @click="del(p.id)">删除</button>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td colspan="100">
+                        当前{{pageNum}}/{{page.lastPage}}页，共计{{page.total}}条记录;
+                        <button @click="paging(1)">首页</button>
+                        <button @click="paging(page.prePage)">上一页</button>
+                        <button @click="paging(page.nextPage)">下一页</button>
+                        <button @click="paging(page.lastPage)">尾页</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </center>
+</body>
+<script type="text/javascript" src="../myjs/index.js"></script>
+</html>
