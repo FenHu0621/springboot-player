@@ -69,7 +69,6 @@ public class PlayerServiceImpl implements PlayerService {
         Player player1 = (Player) request.getSession().getAttribute("player");
         String url = player1.getUrl();
         player.setUrl(url);
-        System.out.println("up............."+url);
         playerMapper.updatePlayer(player);
     }
 
@@ -80,9 +79,7 @@ public class PlayerServiceImpl implements PlayerService {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH/mm");
             String format = sdf.format(new Date());
             String imgAddress = "/imgs"+format+"/"+file.getOriginalFilename();
-            System.out.println("img.."+imgAddress);
             realPath = realPath+imgAddress;
-            System.out.println("real....."+realPath);
             File file1 = new File(realPath);
             if(!file1.exists()){
                 file1.mkdirs();
